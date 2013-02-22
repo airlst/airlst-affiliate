@@ -4,29 +4,31 @@
 A2DIP enables portals, content aggregators and affiliate websites to dispatch reservations or bookings to local stores (e.g. restaurants, bars, clubs, venues, etc). AirLST takes care of the full process and transparently handles all communication with hosts and guests. Depending on the requirements of the affiliate partner, the system can be setup so that neither hosts nor guests can see that AirLST handles the communication.
 
 ## Short example
-Affiliate partner AP runs a website where people can rate the best restaurants in town. AP wants to offer his website visitors the possibility to make reservations in the restaurants he recommends (eventually earning some referral fee for bringing good guests). AP rightfully decides that developing a reservation engine for himself is a tedious task, and integrates AirLST A2DIP to his website in a few minutes instead.
+Affiliate partner (AP) runs a website where people can rate the best restaurants in town. AP wants to offer his website visitors the possibility to make reservations at the restaurants he recommends (eventually earning some referral fee for bringing good guests). AP rightfully decides that developing a reservation engine for himself is a tedious task, so he integrates AirLST A2DIP to his website in a few minutes.
 
 AP adds a few lines of PHP code to his website, which add a customizable reservation button to each of his restaurant review pages.
 
-Here's what happens when website visitor Bob clicks on the reservation button which is displayed on the page of restaurant host Alice:
+Here's what happens when website visitor Bob clicks on the reservation button which is displayed on the profile page of restaurant host Alice:
 
-1. An awesome looking overlay will be displayed, where the Bob may select date, time and amount of people he wants to make a reservation for.
+1. AP adds the button to his website.
 
-2. Bob enters his name, email and phone number and submits the reservation request.
+2. An awesome looking overlay will be displayed, where the Bob may select date, time and amount of people he wants to make a reservation for.
 
-3. AirLST will contact Alice (the host of the restaurant) on behalf of AP, asking if she wants to accept Bob's reservation request.
+3. Bob enters his name, email and phone number and submits the reservation request.
 
-4. If Alice accepts the reservation, Bob will be notified by email that his request was accepted. If Alice is booked out on this evening, Bob will of course also be notified.
+4. AirLST will contact Alice (the host of the restaurant) on behalf of AP, asking if she wants to accept Bob's reservation request.
 
-5. (Optionally) AirLST can send a follow up email to Bob after his visit at Alice's restaurant, asking him to rate his stay or become fan of Alice's facebook page. Alice will be happy to receive feedback from Bob, increasing her ratings and social media presence.
+5. If Alice accepts the reservation, Bob will be notified by email that his request was accepted. If Alice is booked out on this evening, Bob will of course also be notified.
 
-5. (Optionally) Website owner AP can query the AirLST system to know how many reservations he has send to Alice. If he is sending lots of reservations, he might negotiate a small kickback with Alice.
+6. (Optionally) AirLST can send a follow up email to Bob after his visit at Alice's restaurant, asking him to rate his stay or become fan of Alice's facebook page. Alice will be happy to receive feedback from Bob, increasing her ratings and social media presence.
 
-6. (Optionally) As Bob is a frequent visitor of AP's restaurant website, AP knows a lot about Bob, for example if he is an "influencer" in the community. AP can choose to automatically send this hidden information to Alice with the reservation request, letting her know that she should take special care about Bob. AirLST will handle this communication easily.
+7. (Optionally) Website owner AP can query the AirLST system to know how many reservations he has send to Alice. If he is sending lots of reservations, he might negotiate a small kickback with Alice.
+
+8. (Optionally) As Bob is a frequent visitor of AP's restaurant website, AP knows a lot about Bob, for example if he is an "influencer" in the community. AP can choose to automatically send this hidden information to Alice with the reservation request, letting her know that she should take special care about Bob. AirLST will handle this communication easily.
 
 ## Basic integration of widget
 
-Download or clonce repository from GitHub:
+Download or clone repository from GitHub:
 
 	http://github.com/airlst/airlst-affiliate
 
@@ -74,7 +76,7 @@ Finally, place a link somehwhere in your code:
 
 	<?php echo $button->create_link('Make a reservation'); ?>
 	
-Please see ``demo/demo.php`` in this repository for a working sample implementation.
+Please see ``demo/demo_calendar.php`` and ``demo/demo_rsvplist.php`` in this repository for working sample implementations.
 	
 ## Getting data and statistics back from AirLST
 
@@ -85,6 +87,8 @@ To obtain statistics about the amount and status of the reservations you have se
 ##### Description
 This call will return a complete list of hosts with the sum of reservations made. It will also contain information about how many reservations really showed up (if the host is using AirLST App for checking people in)
 ##### Usage
+
+
 	$api = new AirLST\api();
 	
 	// Setup key and affiliate id (get from AirLST team)
@@ -92,6 +96,7 @@ This call will return a complete list of hosts with the sum of reservations made
 	
 	// Retrieve info about all reservations
 	$res = $api->requests_overall();
+
 
 ##### Returns
 PHP array, displayed in json notation here for readability
@@ -115,7 +120,6 @@ PHP array, displayed in json notation here for readability
 		},
 		...
 	]
-
 
 
 ### /requests_host

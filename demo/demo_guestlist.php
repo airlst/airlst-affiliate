@@ -8,19 +8,13 @@
 	$button->set_affiliate_id_and_key(1, 'abc');
 	
 	// Specifiy recipient of reservation request
-	$button->set_host('marco@pizza.com', 'Marcos Pizza Ristorante');
+	$button->set_host('tom@nightclub.com', 'Munich Nightclub');
 	
 	// Set headline and welcome text of widget
-	$button->set_texts('Reservation', 'Welcome to Marco Pizza');
+	$button->set_texts('Reservations', 'Get on the guestlist of Munich Nightclub.');
 	
-	// Add opening hours: Mon-Sun from 12.00h to 15.00h with 15-minute slots
-	$button->add_shift_everyday(12, 15, 15);
-	
-	// Add opening hours: Mon-Sun from 18.00h to 23.00h with 30-minute slots
-	$button->add_shift_everyday(18, 23, 30);
-	
-	// Allow reservations from 2 to 6 persons
-	$button->set_pax_allowed(2, 6);
+	// Setup a guestlist for Saturday and allow reservations for 1 to 6 persons
+	$button->set_rsvplist('Guestlist Saturday', 'DJ Leo Kane spinning the wheels for you', 1, 6);
 	
 	// Send meta data to host along with the reservation. host can see it, guest cannot see it.
 	$button->set_meta_public('Guest has high reputation on portal');
@@ -33,11 +27,11 @@
 	<head>
 		<meta charset="utf-8">
 		<?php echo $button->async_js_loader(); ?>
-		<title>Restaurant Portal</title>
+		<title>Nightlife Portal</title>
 	</head>
 	<body>
-		<h1>Welcome to Restaurant Portal</h1>
-		<p>If you want to make a reservation at Marcos Pizza, please click on the link below.</p>
-		<p><?php echo $button->create_link(); ?></p>
+		<h1>Welcome to Nightlife Portal</h1>
+		<p>If you want to make a reservation at Munich Nightclub, please click on the link below.</p>
+		<p><?php echo $button->create_link('Get on the guestlist now'); ?></p>
 	</body>
 </html>	
